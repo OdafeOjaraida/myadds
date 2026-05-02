@@ -1,20 +1,23 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# HAMS - Hostel & Laundry Management System
 
-# Run and deploy your AI Studio app
+A full-stack application designed to manage student laundry quotas and meal plans at Nile University.
 
-This contains everything you need to run your app locally.
+## 🚀 Project Structure
+- **Frontend**: React.js + Vite (optimized for Mobile PWA)
+- **Backend**: Python Flask API
+- **Database**: MySQL
 
-View your app in AI Studio: https://ai.studio/apps/2a4cc2d4-a70a-4142-b08c-bc13b3295a99
+## 🛠️ How to Run Locally
 
-## Run Locally
+### 1. Frontend Setup
+1. `cd Frontend`
+2. `npm install`
+3. `npm run dev`
 
-**Prerequisites:**  Node.js
+### 2. Backend Setup
+1. `cd Backend`
+2. Install dependencies: `pip install flask flask-cors mysql-connector-python`
+3. Run the server: `python main.py`
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### 3. Database Setup
+- Import the SQL schema provided in `database.sql` into MySQL Workbench.

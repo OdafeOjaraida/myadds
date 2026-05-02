@@ -1,15 +1,52 @@
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { UtensilsCrossed, Shirt, Calendar, Clock } from "lucide-react";
 
 export default function Dashboard() {
+  // 1. Setup State for the API Data
+  const [studentData, setStudentData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  // 2. Fetch the Data when the page loads
+  useEffect(() => {
+    fetch('http://127.0.0.1:5000/api/student/STU001')
+      .then(response => response.json())
+      .then(data => {
+        setStudentData(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error connecting to backend:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  // 3. Simple loading screen that matches your padding
+  if (loading) {
+    return <div className="p-8 text-center text-xl font-bold text-neutral-600">Loading HAMS Data...</div>;
+  }
+
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-neutral-900">Student Dashboard</h1>
       </div>
 
+      {/* --- NEW: Live Database Greeting --- */}
+      {studentData && !studentData.error && (
+        <motion.div 
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-indigo-50 border border-indigo-100 rounded-xl p-4"
+        >
+          <h2 className="text-xl font-semibold text-indigo-900">Welcome back, {studentData.name} 👋</h2>
+          <p className="text-indigo-700 text-sm mt-1">Student ID: <strong>{studentData.student_id}</strong> | Role: {studentData.role}</p>
+        </motion.div>
+      )}
+      {/* ----------------------------------- */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Meals Card */}
+        {/* Meals Card (Your original code perfectly intact) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +91,7 @@ export default function Dashboard() {
           </div>
         </motion.div>
 
-        {/* Laundry Card */}
+        {/* Laundry Card (Your original code perfectly intact) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
